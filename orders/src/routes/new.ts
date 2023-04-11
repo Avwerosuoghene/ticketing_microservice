@@ -16,7 +16,7 @@ import { OrderCreatedPublisher } from "../events/publishers/order-created-publis
 
 const router = express.Router();
 
-const EXPIRATION_WINDOWS_SECONDS = 15 * 60;
+const EXPIRATION_WINDOWS_SECONDS = 1 * 60;
 
 router.post(
   "/api/orders",
@@ -64,7 +64,7 @@ router.post(
       id: order.id,
       status: order.status,
       userId: order.userId,
-
+      version: order.version,
       // This gives us a UTC time format
       expiresAt: order.expiresAt.toISOString(),
       ticket: {
