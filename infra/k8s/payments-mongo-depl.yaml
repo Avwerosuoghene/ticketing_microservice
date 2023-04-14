@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments-mongo
+  template:
+    metadata:
+      labels:
+        app: payments-mongo
+    spec:
+      containers:
+        - name: payments-mongo
+
+        # This image is coming from dockerhub public image.
+          image: mongo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-mongo-srv
+spec:
+  selector:
+    app: payments-mongo
+  ports:
+
+  # This name is used for logging purposes
+    - name: db
+      protocol: TCP
+
+      # Mongodb by default listens to traffic on this port
+      port: 27017
+      targetPort: 27017

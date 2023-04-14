@@ -25,7 +25,8 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
     build(attrs: OrderAttrs): OrderDoc;
 };
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema(
+    {
     userId: {
         type: String,
         required: true
@@ -50,7 +51,8 @@ const orderSchema = new mongoose.Schema({
             delete ret._id;
         }
     }
-});
+}
+);
 
 orderSchema.set('versionKey', 'version');
 orderSchema.plugin(updateIfCurrentPlugin)

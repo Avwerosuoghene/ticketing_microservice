@@ -1,0 +1,10 @@
+export const stripe = {
+    charges: {
+
+        // This make sure we return a promise that resolves itself
+        // whenever the fucntion is called
+        create: jest.fn().mockRejectedValue({
+            
+        })
+    }
+}

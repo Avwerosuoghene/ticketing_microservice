@@ -54,6 +54,15 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
+    - image: kesuion/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
             
 
 

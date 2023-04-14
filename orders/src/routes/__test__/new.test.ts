@@ -49,6 +49,7 @@ it("reserves a ticket", async () => {
     title: "concert",
     price: 20,
   });
+  
 
   await ticket.save();
 
