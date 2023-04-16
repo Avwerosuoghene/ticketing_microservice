@@ -5,6 +5,7 @@ import { OrderCancelledListener } from "./events/listeners/order-cancelled-liste
 import { OrderCreatedListener } from "./events/listeners/order-created-listener";
 
 const start = async () => {
+  console.log('starting ...')
   console.log(process.env.JWT_KEY);
   // Checks for jwt key
   if (!process.env.JWT_KEY) {
