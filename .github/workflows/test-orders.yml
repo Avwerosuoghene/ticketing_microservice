@@ -2,10 +2,10 @@ name: test-orders
 
 on:
   pull_request
-  # This ensures the test/command here runs whenever changes are 
-  # Made specifically in the orders dir
-    paths: 
-      - 'orders/**'
+  # # This ensures the test/command here runs whenever changes are 
+  # # Made specifically in the orders dir
+  #   paths: 
+  #     - 'orders/**'
   
 jobs:
   build:
