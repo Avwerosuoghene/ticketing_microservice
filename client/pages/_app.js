@@ -7,10 +7,12 @@ import Header from "../components/header";
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <Header currentUser = {currentUser}/>
+      <Header currentUser={currentUser} />
 
       {/* At this point the required information are sent to the individual pages */}
-      <Component {...pageProps} />
+      <div className="container">
+        <Component currentUser={currentUser} {...pageProps} />
+      </div>
     </div>
   );
 };
@@ -18,24 +20,27 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
 
-//   common to all pages
+  //   common to all pages
   const { data } = await client.get("/api/users/currentuser");
 
+  let pageProps = {};
 
-let pageProps = {};
-
-// This condition ensures components that don't have getInitialprops function don't crash
-if (appContext.Component.getInitialProps) {
+  // This condition ensures components that don't have getInitialprops function don't crash
+  if (appContext.Component.getInitialProps) {
     //   This will be passed into the getInitial props of various pages
-    pageProps = await appContext.Component.getInitialProps(appContext.ctx);
-}
+    pageProps = await appContext.Component.getInitialProps(
+      appContext.ctx,
+      client,
+      data.currentUser
+    );
+  }
 
-    // pageProps is gotten from the getInitial props of each component,
-    // while data is from the getInitial props of this app component
+  // pageProps is gotten from the getInitial props of each component,
+  // while data is from the getInitial props of this app component
   return {
     pageProps,
-    ...data
-  }
+    ...data,
+  };
 };
 
 export default AppComponent;

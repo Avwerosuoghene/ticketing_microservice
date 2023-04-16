@@ -7,11 +7,19 @@ export default ({ currentUser }) => {
       href: "/auth/signup",
     },
     !currentUser && {
-      label: "Signu In",
+      label: "Sign In",
       href: "/auth/signin",
     },
     currentUser && {
-      label: "Signu Out",
+      label: "Sell Tickets",
+      href: "/tickets/new",
+    },
+    currentUser && {
+      label: "My orders",
+      href: "/orders",
+    },
+    currentUser && {
+      label: "Sign Out",
       href: "/auth/signout",
     },
   ]
@@ -19,7 +27,7 @@ export default ({ currentUser }) => {
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
       return (
-        <li key={href} className="nav-item">
+        <li key={href} className="nav-item" style={{marginRight: '10px'}}>
           <Link href={href}>{label}</Link>
         </li>
       );
