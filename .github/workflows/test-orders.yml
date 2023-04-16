@@ -1,15 +1,16 @@
-name: test-orders
+
+
+name: tests-orders
 
 on:
-  pull_request
-  # # This ensures the test/command here runs whenever changes are 
-  # # Made specifically in the orders dir
-  #   paths: 
-  #     - 'orders/**'
-  
+  pull_request:
+    paths:
+      - 'orders/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: cd orders && npm install && npm run test:ci
+

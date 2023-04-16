@@ -1,12 +1,10 @@
-name: test-payments
+name: tests-payments
 
 on:
-  pull_request
-  # # This ensures the test/command here runs whenever changes are 
-  # # Made specifically in the payments dir
-  #   paths: 
-  #     - 'payments/**'
-  
+  pull_request:
+    paths:
+      - 'payments/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
