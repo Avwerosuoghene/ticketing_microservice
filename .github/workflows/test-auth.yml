@@ -1,7 +1,11 @@
 name: test-auth
 
 on:
-  pull_request
+  pull_request:
+  # This ensures the test/command here runs whenever changes are 
+  # Made specifically in the auth dir
+    paths: 
+      - 'auth/**'
   
 jobs:
   build:

@@ -2,6 +2,10 @@ name: test-payments
 
 on:
   pull_request
+  # This ensures the test/command here runs whenever changes are 
+  # Made specifically in the payments dir
+    paths: 
+      - 'payments/**'
   
 jobs:
   build:
