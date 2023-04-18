@@ -30,7 +30,7 @@ jobs:
           token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
           
 #       This connects us to our digital ocean kubernetes cluster and makes it the  active context
-      - run: doctl kuberntes cluster kubeconfig save ticketing
+      - run: doctl kubernetes cluster kubeconfig save ticketing
       
 #       Restarts the auth deployment
       - run: kubectl rollout restart deployment auth-depl
