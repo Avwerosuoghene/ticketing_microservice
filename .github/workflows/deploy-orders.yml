@@ -1,0 +1,38 @@
+name: deploy-orders
+
+on: 
+  push: 
+    branches:
+      - master
+    paths:
+      - 'orders/**'
+
+jobs:
+  build:
+  
+#     We can run commands in here as we are running an ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd orders && docker build -t kesuion/orders .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      
+#       This registers our docker secrets
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
+          
+      - run: docker push kesuion/orders
+      
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
+          
+#       This connects us to our digital ocean kubernetes cluster and makes it the  active context
+      - run: doctl kubernetes cluster kubeconfig save ticketing
+      
+#       Restarts the orders deployment
+      - run: kubectl rollout restart deployment orders-depl
+      
+      
+      
