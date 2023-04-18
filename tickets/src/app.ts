@@ -19,7 +19,7 @@ app.use(
         signed: false,
 
         // This ensures the user only accepts over https connection. If we are in test environment, secure becomes false
-        secure: process.env.NODE_ENV !== 'test'
+        secure: false
     })
 );
 

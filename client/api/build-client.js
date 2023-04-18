@@ -10,7 +10,7 @@ export default ({req}) => {
 
         // This will create like a default axios instance
         return axios.create({
-            baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            baseURL: 'http://kesuion-tickets.store',
             headers: req.headers
         });
     } else {
