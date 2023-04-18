@@ -1,0 +1,28 @@
+name: deploy-auth
+
+on: 
+  push: 
+    branches:
+      - master
+    paths:
+      - 'infra/**'
+
+jobs:
+  build:
+  
+#     We can run commands in here as we are running an ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+#       This command autheticate and also install doctl
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}
+          
+#       This connects us to our digital ocean kubernetes cluster and makes it the  active context
+      - run: doctl kuberntes cluster kubeconfig save ticketing
+      
+#       Deploys our config in the container
+      - run: kubectl apply -f infra/k8s
+      
+      
