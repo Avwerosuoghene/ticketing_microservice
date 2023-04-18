@@ -9,6 +9,7 @@ declare global {
 
 let mongo: any;
 
+
 // This is a hook that runs before all our test runs/startup
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
