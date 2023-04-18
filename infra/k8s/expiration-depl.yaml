@@ -16,6 +16,7 @@ spec:
         - name: expiration
           image: kesuion/expiration
           
+          
           # environment variables
           env:
             - name: NATS_CLIENT_ID
