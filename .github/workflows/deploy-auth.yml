@@ -24,5 +24,16 @@ jobs:
           
       - run: docker push kesuion/auth
       
+#       This command autheticate and also install doctl
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}
+          
+#       This connects us to our digital ocean kubernetes cluster and makes it the  active context
+      - run: doctl kuberntes cluster kubeconfig save ticketing
+      
+#       Restarts the auth deployment
+      - run: kubectl rollout restart deployment auth-depl
+      
       
       
