@@ -1,12 +1,11 @@
-name: deploy-manifests
+name: deploy-tickets
 
 on: 
   push: 
     branches:
       - master
     paths:
-      - 'infra/**'
-
+      - 'tickets/**'
 
 jobs:
   build:
@@ -15,7 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-#       This command autheticate and also install doctl
+      - run: cd tickets && docker build -t kesuion/tickets .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      
+#       This registers our docker secrets
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
+          
+      - run: docker push kesuion/tickets
+      
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
@@ -23,7 +31,8 @@ jobs:
 #       This connects us to our digital ocean kubernetes cluster and makes it the  active context
       - run: doctl kubernetes cluster kubeconfig save ticketing
       
-#       Deploys our config in the container
-      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
+#       Restarts the tickets deployment
+      - run: kubectl rollout restart deployment tickets-depl
+      
       
       
