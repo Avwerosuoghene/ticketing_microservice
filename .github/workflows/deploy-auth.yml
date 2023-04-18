@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t kesuion/auth .
-      - run: docker login -u @DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
 #       This registers our docker secrets
         env:
