@@ -29,7 +29,7 @@ const start = async () => {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }
 
-  try {
+  // try {
     // The first arg is the cluster id, second arg is the client id whcih should be a random value, the third
     //  is the service which controls our deployment which we defined in the
     // nats deployment file in infra
@@ -51,9 +51,10 @@ const start = async () => {
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Orders connected to mongodb");
-  } catch (err) {
-    console.log(err);
-  }
+  // } 
+  // catch (err) {
+  //   console.log(err);
+  // }
   app.listen(3000, () => {
     console.log("Orders Listening on port 3000!!!!");
   });
