@@ -15,6 +15,7 @@ const start = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }
+  
 
   try {
     // The first arg is the cluster id, second arg is the client id whcih should be a random value, the third
