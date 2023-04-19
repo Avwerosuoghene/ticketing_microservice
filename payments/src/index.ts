@@ -6,7 +6,7 @@ import { OrderCreatedListener } from "./events/listeners/order-created-listener"
 
 const start = async () => {
   console.log('starting ...');
-  
+
   console.log(process.env.JWT_KEY);
   // Checks for jwt key
   if (!process.env.JWT_KEY) {
@@ -28,7 +28,7 @@ const start = async () => {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }
 
-  try {
+  // try {
     // The first arg is the cluster id, second arg is the client id whcih should be a random value, the third
     //  is the service which controls our deployment which we defined in the
     // nats deployment file in infra
@@ -48,9 +48,10 @@ const start = async () => {
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Payments connected to mongodb");
-  } catch (err) {
-    console.log(err);
-  }
+  
+  // } catch (err) {
+  //   console.log(err);
+  // }
   app.listen(3000, () => {
     console.log("Payments listening on port 3000!!!!");
   });
