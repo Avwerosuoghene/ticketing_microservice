@@ -2,6 +2,7 @@ import Link from "next/link";
 
 // In nextjs, filenames routes to route names
 const LandingPage = ({ currentUser, tickets }) => {
+  
   const ticketList = tickets.map((ticket) => {
     return (
       <tr key={ticket.id}>

@@ -18,7 +18,6 @@ app.use(
     cookieSession({
         // This ensures the cookie doesn't get encrypted
         signed: false,
-
         // This ensures the user only accepts over https connection. If we are in test environment, secure becomes false
         secure: false
     })
