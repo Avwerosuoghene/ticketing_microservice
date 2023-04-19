@@ -7,6 +7,7 @@ import { createChargeRouter } from './routes/new';
 
 const app = express();
 
+
 // This make sure xcpress trust traffic coming from ingres-nginx proxy
 app.set('trust proxy', true);
 app.use(json());

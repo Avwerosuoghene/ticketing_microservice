@@ -11,6 +11,7 @@ import { showOrderRouter } from './routes/show';
 
 const app = express();
 
+
 // This make sure ecpress trust traffic coming from ingres-nginx proxy
 app.set('trust proxy', true);
 app.use(json());
