@@ -8,7 +8,7 @@ metadata:
 
 spec:
   rules:
-    - host: www.kesuion-tickets.store'
+    - host: 'www.kesuion-tickets.store'
       http:
         paths:
           - path: /api/users/?(.*)
